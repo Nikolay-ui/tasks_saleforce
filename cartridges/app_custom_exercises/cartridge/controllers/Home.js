@@ -26,7 +26,7 @@ server.append('Show', function(req, res, next) {
 	if (req.querystring.promo == 1) {
 		// This example shows an alternative to getting the view data like you did in prepend
 		res.setViewData(
-			{ detailText: 'Home with Promo (All Bags for Sale this week).' }
+			{ detailText: 'Home with Promo (All Bags for Sale this week).!' }
 		);
 	}
 	next();

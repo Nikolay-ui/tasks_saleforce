@@ -3,14 +3,17 @@
 var server = require('server');
 var newsletterForm = server.forms.getForm('srvnewsletter');
 //8-1 Define a variable named HookMgr that requires the HookMgr class
-
+var HookMgr = require('dw/system/HookMgr');
 //7-7 require "Logger" from dw.system package
+var Logger = require('dw/system/Logger');
 
 server.get('Start', function (req, res, next) {
 	
 	newsletterForm.clear();
 	// 7-2 render the newsletter signup form, passing in the form
-	
+	res.render('newsletter/srvnewslettersignup', {
+		newsletterForm: newsletterForm
+	});
 	
 	next();
 });
@@ -27,16 +30,20 @@ function validateEmail(email) {
 server.post('HandleForm', function (req, res, next) {
 	
 	var Resource = require('dw/web/Resource');
-	var storageService = // 7-2 require the storageService module
+	var storageService = require('~/cartridge/scripts/storageService'); // 7-2 require the storageService module
 	
 	//7-2  require dw.system.Transaction
+	var Transaction = require('dw/system/Transaction');
 
 	if (validateEmail(newsletterForm.email.value))
 	{
 		//7-7 create a variable called "logger" with log file prefix as "NewsLogs" and logging
 		//7-7 category as "newsletter"
+		var logger = Logger.getLogger("NewsLogs", "newsletter");
+		
 
    	   //7-2  start the transaction using appropriate method
+		Transaction.begin();
 		try
 		{
 			var co = storageService.storeNewsletterObject(newsletterForm);
@@ -47,19 +54,24 @@ server.post('HandleForm', function (req, res, next) {
 				newsletterObject: co
 			});
 	      // 7-2  commit the transaction using appropriate method				
+			Transaction.commit();
 			//8-1 call app.email hook, specify the extensionPoint and function
+			HookMgr.callHook('app.email', 'send', newsletterForm.email.value);
 			//7-7 log a debug message that signup was successful
+			logger.debug("signup is successful")
+
+			
 		}
 		catch (e)
 		{
 			// 7-2  undo the transaction using appropriate method
-		
+			Transaction.rollback();
 			//7-7 log an error message "Problem with subscription: {0}", e.causeMessage
-			
+			logger.error("Problem with subscription: {0}", e.causeMessage);
 			// 7-2 Create error.message.email.invalid.value  string which is exernalized in forms.properties file
 			//fill in the ?? in the code below
 		
-			res.setViewData({ emailerror: Resource.msg('???', '??', null) });
+			res.setViewData({ emailerror: Resource.msg('error.message.email.invalid.value', 'forms', null) });
 			res.render('newsletter/srvnewslettersignup', {
 				newsletterForm: newsletterForm
 			});

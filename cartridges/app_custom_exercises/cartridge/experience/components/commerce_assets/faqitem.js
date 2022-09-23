@@ -1,7 +1,8 @@
 'use strict';
 
 // Initialize constants Template and HashMap
-
+const Template = require('dw/util/Template');
+const HashMap = require('dw/util/HashMap');
 
 /**
  * @function renderFAQItem

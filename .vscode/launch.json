@@ -1,12 +1,16 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-    
+  "version": "0.1.0",
+  "configurations": [
       {
           "type": "prophet",
           "request": "launch",
-          "name": "Attach to Sandbox"
-      },
-
-    ]
+          "name": "TEST_SFRA",
+          "hostname": "bgrv-003.sandbox.us01.dx.commercecloud.salesforce.com",
+          "username": "yuliana.kravchuk@shoplc.de",
+          "password": "Loreal$02",
+          "codeversion": "version1",
+          "cartridgeroot": "auto",
+          "workspaceroot": "${workspaceRoot}"
+      }
+  ]
 }

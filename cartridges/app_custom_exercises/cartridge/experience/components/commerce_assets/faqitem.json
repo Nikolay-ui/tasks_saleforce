@@ -28,8 +28,11 @@
           "required": true      
         },
         {
-          // Do the similar task for "text_faq_answer" - remove this line afterwards!
-           
+          "id": "text_faq_answer",
+          "name": "FAQ Answer",
+          "description": "Represents the FAQ answer content associated to this item.",
+          "type": "string",
+          "required": true      
         }
       ]
     },
@@ -44,9 +47,6 @@
           "description": "Please check this checkbox to hide the faq title from customer view.",
           "type": "boolean",
           "required": false
-        },
-        {
-          // Do the similar task for "disable_faq_item" - remove this line afterwards!
         }
       ]
     }

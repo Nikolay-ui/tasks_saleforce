@@ -2,8 +2,8 @@
 
 
 function setCache(req, res, next) {
-    res.cachePeriod = 24; // eslint-disable-line no-param-reassign
-    res.cachePeriodUnit = 'hours'; // eslint-disable-line no-param-reassign
+    res.cachePeriod = 2; // eslint-disable-line no-param-reassign
+    res.cachePeriodUnit = 'minutes'; // eslint-disable-line no-param-reassign
     next();
 }
 

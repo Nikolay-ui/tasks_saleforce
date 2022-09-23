@@ -26,7 +26,9 @@
             </isif>
         </p>
         <!---add an isif condition to display the store email--->
-
+        <isif condition="${store.email}">
+            ${store.email}
+        </isif>
     </address>
 </div>
 

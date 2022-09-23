@@ -19,7 +19,7 @@
                <iscomment>Now, render the FAQ answer with your own code below</iscomment>
 
             <p class="faq-item-answer">
-                <isprint value="${pdict.text_faq_answer}" encoding="off"/>
+                <isprint value="${pdict.text_faq_answer}" />
             </p>
 
         </div>

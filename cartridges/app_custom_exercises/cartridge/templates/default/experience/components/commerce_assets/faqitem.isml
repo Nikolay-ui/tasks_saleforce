@@ -16,7 +16,11 @@
                 <span><isprint value="${pdict.text_faq_question}" encoding="off"/></span>
             </strong></p>
 
-            <iscomment>Now, render the FAQ answer with your own code below</iscomment>
+                <iscomment>Now, render the FAQ answer with your own code below</iscomment>
+
+            <p class="faq-item-answer">
+                <isprint value="${pdict.text_faq_answer}" encoding="off"/>
+            </p>
 
         </div>
         </div>
